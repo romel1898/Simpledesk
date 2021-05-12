@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<title>Simple Desk</title>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+</head>
+<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			font-family: 'Lato', sans-serif;
+		}
+		
+		header{
+			background-image: url(https://lh3.googleusercontent.com/LRbHXBi8cQJSncjBW3qfR_ZrEiE1VWcaWwi3Hk1i_v58Sv_yWEppWCoMHwLijgA4BrUi12MYVYrcT6DMCDT59A=w1440);
+			height: 828px;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+		header nav{
+			text-align: center;
+			background-color: white;
+			height: 110px;
+		}
+		header nav ul li img{
+			width: 100%;
+			max-width: 200px;
+			margin-top: 20px;
+		}
+		.text-inside{
+			text-align: center;
+			margin: 80px auto 0px auto;
+			padding: 10px;
+		}
+		.text-inside h1{
+			font-size: 64px;
+			margin-bottom: 42px;
+		}
+		.text-inside h2{
+			font-size: 18px;
+			font-weight: 700;
+			margin-bottom: 36px;
+		}
+		.text-inside p{
+			font-size:20px;
+			margin-bottom: 61px;
+			font-weight: 300;
+		}
+		.text-inside a{
+			display: inline-block;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			background:#4bbce0;
+			width: 297px;
+			height: 65px; 
+			line-height: 60px;
+			font-weight: 300;
+			margin-bottom: 32px;
+		}
+		.overlay{
+		  width: 100%;
+		  height: 100%;
+		  background: rgba(0,0,0,.5);
+		  position:fixed;
+		  top:0;
+		  left:0;
+		  display: none;
+		  
+		}
+		.modal{
+			position: absolute;
+			width: 696px;
+			height: 623px;
+			top: 10%;
+			left: 25%;
+			background: white;
+			text-align: center;
+		}
+	     .modal h1{
+	     	font-size:48px;
+	     	margin-top: 50px;
+	     	margin-bottom: 25px;
+	     }
+	     .modal p{
+	     	font-size: 18px;
+	     	margin-bottom: 25px;
+	     }
+	     .modal input{
+	     	width: 491px;
+	     	height: 36px;
+	     	outline: none;
+	     	border:none;
+	     	border: 1px solid;
+	     	margin-bottom: 15px;
+	     	border-radius:5px;
+	     }
+	     .modal textarea{
+	     	width: 491px;
+	     	height: 128px;
+	     	outline:none;
+	     	border-radius:5px;
+	     }
+	     .modal button{
+	     	width: 491px;
+	     	height:55px;
+	     	line-height: 20px;
+	     	display: block;
+	     	margin: 15px auto 15px auto;
+	     	border: none;
+	     	background:#4bbce0; 
+	     	outline: none; 
+	     	border-radius:5px;
+	     	font-size: 24px;
+	     }
+	     .modal a{
+	     	float: right;
+	     	margin-right: 30px;
+	     	margin-top: 20px;
+	     	text-decoration: none;
+			background-color: #DDE2EB;
+			color:#B2B4B9;
+			line-height:30px;
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+	     }
+	     ::placeholder{
+	     	padding-left: 10px;
+	     }
+		.container {
+			display: grid;
+			grid-template-columns: auto auto;
+			text-align: left;	
+			margin: auto;
+			grid-gap: 35px;
+			width: 1199px;
+			padding: 74px 20px 55px 20px;
+		}
+		.container ul{
+			padding: 5px;
+			list-style: none;
+		}
+		.container img{
+			
+			max-width: 377px;
+		}
+		.container h1{
+			font-size: 64px;
+			margin-bottom:30px;
+		}.container h2{
+			margin-bottom:30px; 
+			font-size: 34px;
+			font-weight: 100;
+		}
+		.container p{
+			margin-bottom:39px;
+			font-size: 20px;
+		}
+		.container a{
+			display: inline-block;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			background:#4bbce0;
+			width: 297px;
+			height: 65px; 
+			line-height: 60px;
+			font-weight: 300;
+			margin-bottom: 32px;
+			text-align: center;
+		}
+		span{
+			display: block;
+			font-weight: 100;
+		}
+		.second-section{
+			background-image: url(https://lh3.googleusercontent.com/vhwKiuaF42P7Xb7SWXhZJ6Hj2l6IaEGqPMiFvSbPdx0jHF3w2p8DJA9tUFLpgKWGH3l7XNP-Rnh2h_0xtLct=w1440);
+			height: 929px;
+			background-repeat: no-repeat;
+			background-color: #EBECEE;
+		}
+		.second-container {
+			display: grid;
+			grid-template-columns: auto auto auto;
+			grid-gap: 0px;
+			text-align: left;	
+			margin: auto;
+			grid-gap: 35px;
+			width: 1199px;
+			padding: 279px 20px 5px 20px;
+		}
+		.second-container h1{
+			font-size: 64px;
+			margin-bottom:30px;
+		}.second-container h2{
+			margin-bottom:30px; 
+			font-size: 34px;
+			font-weight: 100;
+		}
+		.second-container p{
+			margin-bottom:39px;
+			font-size: 20px;
+		}
+		.second-container ul{
+			list-style: none;
+		}
+		.second-container ul li p{
+			width: 507px;
+		}
+		.second-container a{
+			display: inline-block;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			background:#4bbce0;
+			width: 297px;
+			height: 65px; 
+			line-height: 60px;
+			font-weight: 300;
+			margin-bottom: 32px;
+			text-align: center;
+		}
+		.second-container ul:nth-child(2), .second-container ul:nth-child(3){
+			margin-top:200px;
+			font-size: 18px;
+			list-style:initial;
+			line-height: 30px;
+		}
+		.third-section{
+			background-image: url(https://lh3.googleusercontent.com/cwogmF4lUpZ2Cnu1eRTcY_Qe8SaAcg4dzSC-9cIUEQj-eWaPs77JLiitlgv3qOGV_8ulrhZHF4hC7fQjSEHVkw=w1440);
+			height: 268px;
+			background-position: center;
+			background-size: cover;
+			text-align: center;
+		}
+		.third-section h1{
+			font-size: 28px;
+			color: white;
+			padding-top: 79px;
+			font-weight: 300;
+		}
+		.third-section span{
+			color: white;
+			font-size: 14px;
+			margin-top: 46px;
+		}
+		
+		.fourth-section{
+			text-align: center;
+			padding-bottom: 40px;
+		}
+		.fourth-container{
+			display: grid;
+			grid-template-columns: auto auto auto;
+			grid-gap: 0px;
+			padding: 68px 160px 2px 160px;
+
+		}
+		.fourth-container ul{
+			list-style: none;
+			margin: auto;
+			width: 350px;
+			height: 270px;
+			background: #F5F5F5;
+
+		}
+		.fourth-section  h1{
+			font-size: 48px;
+			padding-top:96px;
+			padding-bottom: 35px; 
+		}
+		.fourth-section p{
+			font-size: 24px;
+			color: #2F3439;
+
+		}
+		.fourth-container ul li i{
+			font-size: 36px;
+			color:#4BBCE0;
+			padding-top: 44px;
+			padding-bottom: 51px;
+		}
+		.show{
+			display: none;
+		}
+		.fourth-container ul li p{
+			padding:1px 30px 1px 30px; 
+			font-size: 18px;
+		}
+		.fourth-section a{
+			display: inline-block;
+			font-size: 20px;
+			color: black;
+			text-decoration: none;
+			background:#4bbce0;
+			width: 297px;
+			height: 65px; 
+			line-height: 60px;
+			font-weight: 300;
+			margin-bottom: 32px;
+			text-align: center;
+			margin-top: 48px;
+		}
+		.fifth-section{
+			background-color: #4BBCE0;
+			height: 539px;
+			background-size: cover;
+			text-align: center;
+			color: white;
+		}
+		.fifth-section h1{
+			padding-top:107px;
+			padding-bottom:51px;
+			font-size: 48px;
+		}
+		.fifth-section p{
+			font-size: 24px;
+			width: 950px;
+			margin: auto;
+		}
+		.fifth-section a{
+			display: inline-block;
+			font-size: 24px;
+			color: black;
+			text-decoration: none;
+			background:white;
+			width: 518px;
+			height: 72px; 
+			line-height: 65px;
+			font-weight: 300;
+			margin-bottom:32px;
+			text-align: center;
+			margin-top: 48px;
+		}
+		footer{
+			height: 167px;
+		}
+		footer div{
+			display: grid;
+			grid-template-columns: auto auto;
+			color: black;
+			width: 1000px;
+			margin: 80px auto 1px auto;
+		}
+		footer div ul{
+			list-style: none;
+			
+		}
+		footer div ul li{
+			display: inline-block;
+			margin:0 10px 0 10px;
+		}
+		footer div ul li a{
+			font-size:20px;
+			color: black;
+		}
+		@media screen and (max-width: 599.98px) {
+			header{
+				height: 100%;
+
+			}
+			.container{
+				grid-template-columns: auto;
+				width: 100%;
+				padding: 0 0 0 0;
+			}
+			.container h1{
+				font-size: 33px;
+			}
+			.container h2{
+				font-size: 20px;
+			}
+			.container img{
+				width: 100%;
+			}
+			.container p{
+				font-size: 14px;
+			}
+			.container a{
+				width: 90%;
+				margin: 1px auto 32px auto;
+			}
+			.second-section{
+				background-size: contain;
+				height: 100%;
+				padding: 10px;
+			}
+			.second-container{
+				grid-template-columns: auto;
+				width: 100%;
+				padding: 0 0 0 0;
+			}
+			.second-container ul li h1{
+				width: 100%;
+				font-size:40px;
+			}
+			.second-container ul li h2{
+				width: 100%;
+				font-size: 24px;
+			}
+			.second-container ul li p{
+				width: 100%;
+				font-size:18px;
+				margin-bottom: 10px;
+			}
+			.hide{
+				display: none;
+			}
+			.show{
+				display: block;
+			}
+			.second-container ul:nth-child(2), .second-container ul:nth-child(3){
+				margin-top: 0px;
+			}
+			.third-section{
+				height: 100%;
+				padding: 10px;
+			}
+			.third-section h1{
+				font-size: 24px;
+				padding-top: 20px;
+			}
+			.fourth-section{
+				padding: 10px;
+			}
+			.fourth-section h1{
+				padding-top: 20px;
+				font-size: 32px;
+			}
+			.fourth-section p{
+				font-size:18px;
+				padding: 10px;
+			}
+			.fourth-container{
+				grid-template-columns: auto;
+				padding: 10px 0 0 0;
+			}
+			.fourth-container ul{
+				width: 100%;
+			}
+			.fifth-section{
+				width: 100%;
+				height: 100%;
+				text-align: center;
+			}
+			.fifth-section p{
+				width: 100%;
+				font-size: 18px;
+				margin:initial; 
+			}
+			.fifth-section h1{
+				font-size: 28px;
+				width: 100%;
+			}
+			.fifth-section a{
+				width: 90%;
+			}
+			footer{
+				padding: 10px;
+				height: 100%;
+			}
+			footer div{
+				grid-template-columns: auto;
+				width: 100%;
+				text-align: center;
+				margin: 20px auto 1px auto;
+			}
+			footer div ul li{
+				font-size: 16px;
+				margin-bottom: 5px;
+
+			}
+			.modal{
+				top:2%;
+				width: 90%;
+				left:5%;
+				height:90%;
+			}
+			.modal a{
+				margin-top: 5px;
+				margin-right:10px;
+			}
+			.modal h1{
+				font-size:30px;
+			}
+			.modal input{
+				width: 90%;
+			}
+			.modal button{
+				width: 90%;
+			}
+			.modal textarea{
+				width: 90%;
+			}
+		}
+		@media screen and (max-width: 399.98px) {
+			header nav ul li img{
+				margin-top:30px;
+			}
+			.text-inside{
+				margin:10px auto 0 auto; 
+			}
+			.text-inside h1{
+				font-size: 45px;
+			}
+			.container{
+				grid-template-columns: auto;
+				width: 100%;
+				padding: 0 0 0 0;
+			}
+			
+			.container h1{
+				font-size: 33px;
+			}
+			.container h2{
+				font-size: 20px;
+			}
+			.container img{
+				width: 100%;
+			}
+			.container p{
+				font-size: 14px;
+			}
+			.container a{
+				width: 90%;
+				margin: 1px auto 32px auto;
+			}
+			.second-section{
+				background-size: contain;
+				height: 100%;
+				padding: 10px;
+			}
+			.second-container{
+				grid-template-columns: auto;
+				width: 100%;
+				padding: 0 0 0 0;
+			}
+			.second-container ul li h1{
+				width: 100%;
+				font-size:32px;
+			}
+			.second-container ul li h2{
+				width: 100%;
+				font-size: 24px;
+			}
+			.second-container ul li p{
+				width: 100%;
+				font-size:18px;
+				margin-bottom: 10px;
+			}
+			.hide{
+				display: none;
+			}
+			.show{
+				display: block;
+			}
+			.second-container ul:nth-child(2), .second-container ul:nth-child(3){
+				margin-top: 0px;
+			}
+			.third-section{
+				height: 100%;
+				padding: 10px;
+			}
+			.third-section h1{
+				font-size: 24px;
+				padding-top: 20px;
+			}
+			.fourth-section{
+				padding: 10px;
+			}
+			.fourth-section h1{
+				padding-top: 20px;
+				font-size: 32px;
+			}
+			.fourth-section p{
+				font-size:18px;
+				padding: 10px;
+			}
+			.fourth-container{
+				grid-template-columns: auto;
+				padding: 10px 0 0 0;
+			}
+			.fourth-container ul{
+				width: 100%;
+			}
+			.fifth-section{
+				width: 100%;
+				height: 100%;
+				text-align: center;
+			}
+			.fifth-section p{
+				width: 100%;
+				font-size: 18px;
+				margin:initial; 
+			}
+			.fifth-section h1{
+				font-size: 28px;
+				width: 100%;
+			}
+			.fifth-section a{
+				width: 90%;
+			}
+			footer{
+				padding: 10px;
+				height: 100%;
+			}
+			footer div{
+				grid-template-columns: auto;
+				width: 100%;
+				text-align: center;
+				margin: 20px auto 1px auto;
+			}
+			footer div ul li{
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+			.modal{
+				top:2%;
+				width: 90%;
+				left:5%;
+				height:90%;
+			}
+			.modal a{
+				margin-top: 5px;
+				margin-right:10px;
+			}
+			.modal h1{
+				font-size:30px;
+			}
+			.modal input{
+				width: 90%;
+			}
+			.modal button{
+				width: 90%;
+			}
+			.modal textarea{
+				width: 90%;
+			}
+		}
+	</style>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><img src="https://lh3.googleusercontent.com/L2eddpomTR0mYJM8ehABw1YerrQhbyL94U6wxebtVNh0m3PhiuZRD_h5J3poaQdhJ1wEI4Z-KYYtAlARuP-a=s0" alt="Logo"></li>
+			</ul>
+		</nav>
+		<div class="text-inside">
+			<h1>You're busy. I'm not. <br> Let's switch that around. </h1>
+			<h2>Julia Thompson | Virtual Assistant</h2>
+			<p>Delegate your workload and 10X your productivity with a virtual assistant today! Get experienced,<br> professional help with a range of skills to make your job—and life—10x easier.</p>
+			<a href="#" class="book">Book Consultation</a>
+			<span> Let's talk—no commitment</span>
+		</div>
+		<div class="overlay">
+		<div class="modal">
+			<a href="#" id="close-btn"> X </a>
+			<h1>Let's get together.</h1>
+			<p>Send me a bit of information and I'll be in touch to schedule <br> your free consultation.</p>
+			<form action="">
+				<input type="text" placeholder="Name">
+				<input type="text" placeholder="Email address"><br>
+				<textarea name="index.html" placeholder="Tell me about your business's needs"></textarea>
+				<button>Send</button>
+				<span>Privacy Policy: We hate spam and promise to keep your email address safe</span>
+			</form>
+		</div>
+		</div>
+	</header>
+	<section>
+		<div class="container">
+			<ul>
+				<li><img src="https://lh3.googleusercontent.com/COMiybR6VD-ugxngTypdezrFRXBMrAT6YEsvwonuK_ZEN7vlQPTdE2YxrzulhXaMeNCq0CHDQf8VItGcqm0mXw=w414" alt=""></li>
+			</ul>
+			<ul>
+				<li><h1>Being busy is a good thing.</h1></li>
+				<li><h2>But it doesn't come without a huge serving of stress  and anxiety. Not to mention a complete lack of spare  time to get things done.</h2></li>
+				<li><p>That's where I come in. Having spent my career as a professional assistant, I've helped everyone from C-level enterprise execs to startup entrepreneurs clear their to-do lists and make more time for the things that matter.</p></li>
+				<li><a href="#" class="book">Book Consultation</a></li>
+				<span> Let's talk—no commitment</span>
+			</ul>
+		</div>
+		<div class="second-section">
+			<div class="second-container">
+				<ul>
+					<li><h1>Help me, help you.</h1></li>
+					<li><h2>I do more than send emails and make travel arrangements—but I do those, too.</h2></li>
+					<li><p>Need to make that presentation pop? Come up with a great social media campaign? Find a last-minute gift? Big or small, I've done it all. Here are just some tasks and skills I can handle for you!</p></li>
+					<li><p>Need help with something that's not on this list? Just ask. I can probably do it, too.</p></li>
+					<li class="hide"><a href="#" class="book">Book Consultation</a></li>
+				    <span class="hide"> Let's talk—no commitment</span>
+				</ul>
+				<ul >
+					<li>Content creation</li>
+					<li>Report preparation</li>
+					<li>Reception duties</li>
+					<li>Social media management</li>
+					<li>IT/help desk support</li>
+				</ul>
+				<ul>
+					<li>Proofreading</li>
+					<li>Calendat management</li>
+					<li>Email screening</li>
+					<li>Translations</li>
+					<li>Event planning</li>
+				</ul>
+				<ul class="show">
+				     <li><a href="#" class="book">Book Consultation</a></li>
+					 <span> Let's talk—no commitment</span>
+				</ul>
+			</div>
+		</div>
+		<div class="third-section">
+			<div>
+				<h1>Very happy with Julia’s service. <br> Since working with her, I feel like I get my life back. ”</h1>
+				<span>—Megan Barnett, CEO at Lyly Boutique</span>
+			</div>
+		</div>
+		<div class="fourth-section">
+			<h1>Why go virtual?</h1>
+			<p>A fair question. After all, when you need the extra help, hiring someone to work in-person <br> means they're always easy to reach and responsive.</p>
+			<div class="fourth-container">
+				<ul>
+					<li><i class="fas fa-check"></i></li>
+					<li><p>First, I have my own technology covered, so you pay nothing on the hardware or software front.</p></li>
+				</ul>
+				<ul>
+					<li><i class="fas fa-dollar-sign"></i></li>
+					<li><p>Second, I have my own private office, so not only does that eliminate a sizable expense, it ensures I'm undistracted and always available.</p></li>
+				</ul>
+				<ul>
+					<li><i class="fas fa-rocket"></i></li>
+					<li><p>But most importantly, you only pay by the quarter-hour. And that means you're going to save big on downtime.</p></li>
+				</ul>
+			</div>
+			<a href="#" class="book">Book Consultation</a>
+			<span> Let's talk—no commitment</span>
+		</div>
+		<div class="fifth-section">
+			<h1>100% Satisfaction Guarantee!</h1>
+			<p>My promise is to make you wonder what you ever did without me. If you're not completely satisfied with the assistance I provide within the first 5 tasks, you get your money back—no questions asked.</p>
+			<a href="#" class="book">Book Consultation</a>
+			<span> Let's talk—no commitment</span>
+		</div>
+	</section>
+	<footer>
+		<div>
+			<ul>
+				<li>©2020 SimpleDesk. All rights reserved.  Privacy Policy</li>
+			</ul>
+			<ul>
+				<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+				<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+				<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+				<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+			</ul>
+		</div>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+			$(document).ready(function(){
+			$(".book").click(function(){
+				$(".overlay").fadeIn();
+			});
+			$(".overlay").click(function(){
+				$("#close-btn, .overlay").fadeOut();
+			});
+
+			});
+	</script>
+</body>
+</html>
